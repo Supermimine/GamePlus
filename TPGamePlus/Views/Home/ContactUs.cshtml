@@ -1,0 +1,31 @@
+﻿@{
+	ViewData["Title"] = "Nous contacter";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/ContactUs.css">
+</head>
+
+
+
+<vc:form-contact-us></vc:form-contact-us>
+
+<div class="textCenter">
+	<div>
+		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+
+		<script>
+			(function () {
+				var setting = { "height": 531, "width": 1600, "zoom": 16, "queryString": "M63R+9H Saint-Liboire, Québec", "place_id": "ChIJQRVFbh1IyEwRw1Sen7X3g_4", "satellite": false, "centerCoord": [45.65430948097236, -72.75678603492844], "cid": "0xfe83f7b59f9e54c3", "lang": "fr", "cityUrl": "/canada/granby-40332", "cityAnchorText": "Carte de Granby, Québec, Canada", "id": "map-9cd199b9cc5410cd3b1ad21cab2e54d3", "embed_id": "808521" };
+				var d = document;
+				var s = d.createElement('script');
+				s.src = 'https://1map.com/js/script-for-user.js?embed_id=808521';
+				s.async = true;
+				s.onload = function (e) {
+					window.OneMap.initMap(setting)
+				};
+				var to = d.getElementsByTagName('script')[0];
+				to.parentNode.insertBefore(s, to);
+			})();</script><a href="https://1map.com/fr/map-embed">1 Map</a>
+	</div>
+</div>

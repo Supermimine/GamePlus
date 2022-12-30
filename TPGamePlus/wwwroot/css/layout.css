@@ -1,0 +1,48 @@
+﻿/*--- variables layout---*/
+
+:root {
+    --txt-color: white;
+    --btn-color: #212529;
+
+    --btn-background-color: #c64646;
+    --btn-background-color-disable: #c48c8c;
+    --btn-hover-color: #d53939;
+
+    --shop-background-color: #151515;
+    --banner-background-color: #c64646;
+    --layout-background-color: #151515;
+    --table-background-color: #484848;
+    --background-main-color: #1e1f1f;
+    --background-second-color: #151515;
+    --background-third-color: #2f2f2f;
+
+    --banner-border-color: #c64646;
+    --banner-hover-color: #d52c2c;
+    --txt-hover-color: #828282;
+
+    --important: #c64646!important;
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        --txt-color: Black;
+        --btn-color: #F6F6F6;
+
+        --btn-background-color: #38b2e4;
+        --btn-background-color-disable: #d1ecf1;
+        --btn-hover-color: #9ad4de;
+
+        --shop-background-color: #d1ecf1;
+        --banner-background-color: #d1ecf1;
+        --layout-background-color: #38b2e4;
+        --table-background-color: #ced4da;
+        --background-main-color: white;
+        --background-second-color: #F6F6F6;
+        --background-third-color: #F6F6F6;
+
+        --banner-border-color: #bee5eb;
+        --banner-hover-color: #9ad4de;
+        --txt-hover-color: #828282;
+
+        --important: #38b2e4 !important;
+    }
+}

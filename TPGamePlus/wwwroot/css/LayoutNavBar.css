@@ -1,0 +1,112 @@
+﻿/*---------- Layout ----------*/
+@import url("layout.css");
+
+#alertNews:hover {
+    color: var(--background-second-color) !important;
+}
+
+.SBHeight {
+    height: 40px;
+}
+
+.searchBar {
+    width: 320px;
+}
+
+.hideNavItem {
+    display: none;
+}
+
+.navbar-color {
+    background-color: var(--layout-background-color) !important;
+    color: var(--txt-color);
+}
+
+.nav-txt-color {
+    color: var(--txt-color) !important;
+}
+
+.layout-background-color {
+    background-color: var(--layout-background-color);
+}
+
+.footer-txt-color {
+    color: var(--txt-color);
+}
+
+.footer-color {
+    background-color: var(--layout-background-color);
+    color: var(--txt-color);
+}
+
+.general-color {
+    background-color: var(--layout-background-color);
+    color: var(--txt-color);
+}
+
+.search button {
+    background-color: white !important;
+    border-color: white !important;
+}
+
+.marginTopFooter {
+    margin-top: 25px;
+}
+
+@media only screen and (max-width: 1256px) {
+    .searchBar {
+        width: 220px;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .searchBar {
+        width: 120px;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .searchBar {
+        width: 90px;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .searchBar {
+        width: 70px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .searchBar {
+        width: 50px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .search {
+        transform: translate(-150px,-148px);
+    }
+
+    .searchBar {
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .search {
+        transform: translate(-150px,-130px);
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .searchBar {
+        width: 190px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .searchBar {
+        width: 150px;
+    }
+}

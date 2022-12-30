@@ -1,0 +1,38 @@
+﻿@model TPGamePlus.Models.Admin.CategoryViewModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css">
+</head>
+
+
+
+<div>
+    <h4 class="textCenter">Créer une catégorie</h4>
+    <a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="IndexAdmin">Page admin</a>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form asp-controller="Admin" asp-action="ManageCategory">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Catégorie</label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="isMainShopFilter" class="control-label"></label>
+                <input asp-for="isMainShopFilter" class="custom-checkbox" type="checkbox" />
+                <span asp-validation-for="isMainShopFilter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary btnEnable" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

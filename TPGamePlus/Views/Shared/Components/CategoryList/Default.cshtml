@@ -1,0 +1,17 @@
+﻿@using TPGamePlus.Domain.Entities
+@model IEnumerable<Category>
+
+@foreach (var category in Model)
+{
+	<div class="itemSideBar">
+		@if (category.isMainShopFilter)
+		{
+			<input class="PointerCursor" value="@category.CategoryName" onclick="sortSelect(this.value,1)" checked type="radio" />
+		}
+		else
+		{
+			<input class="PointerCursor" value="@category.CategoryName" onclick="sortSelect(this.value,1)" type="radio" />
+		}
+		<label>@category.CategoryName</label>
+	</div>
+}

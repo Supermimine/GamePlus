@@ -1,0 +1,80 @@
+﻿@{
+	ViewData["Title"] = "Admin";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/Admin.css">
+</head>
+
+
+
+
+<h1 class="SpaceTop">Bienvenue sur la page d'admin</h1>
+
+<div class="textCenterAdmin">
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ManageProduct">
+			Créer un produit
+		</a>
+
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListProduct">
+			Afficher la liste des produits
+		</a>
+	</div>
+
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ManageStatus">
+			Créer un status
+		</a>
+
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListStatus">
+			Afficher la liste des status
+		</a>
+	</div>
+
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ManagePlateforme">
+			Créer une plateforme
+		</a>
+
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListPlateforme">
+			Afficher la liste des plateforme
+		</a>
+	</div>
+
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ManagePublisher">
+			Créer un éditeur
+		</a>
+
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListPublisher">
+			Afficher la liste des éditeur
+		</a>
+	</div>
+
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ManageCompagny">
+			Créer une compagnie
+		</a>
+
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListCompagny">
+			Afficher la liste des compagnies
+		</a>
+	</div>
+
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ManageCategory">
+			Créer une catégorie
+		</a>
+
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListCategory">
+			Afficher la liste des catégories
+		</a>
+	</div>
+
+	<div>
+		<a class="btn btn-admin nav-link-2 btnEnable" asp-controller="Admin" asp-action="ListOrders" >
+			 Afficher la liste des commandes
+		</a>
+	</div>
+</div>

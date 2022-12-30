@@ -1,0 +1,111 @@
+﻿@model TPGamePlus.Models.Account.LoginViewModel
+@{
+	ViewData["Title"] = "Connection";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/Login.css">
+</head>
+
+
+
+<div class="container" style="margin-bottom:80px;">
+	<h4 id="LogIn" class="LogIn" style="margin-top:50px; display:block;">Connexion</h4>
+	<h4 id="paswd" class="paswd" style="margin-top:50px; display:none;">Mot de passe oublié ?</h4>
+
+	<hr />
+
+	<div class="row">
+		<div class="col-md-10 col-lg-8 col-sm-12">
+			<form asp-action="LogIn" class="form" style="display:block;">
+				<p class="fieldset">
+					<label class="image-replace email"></label>
+					<input asp-for="UserName" class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+					<br />
+				</p>
+				<span asp-validation-for="UserName" class="text-danger"></span>
+
+
+				<p id="password" class="fieldset LogIn" style="display:block;">
+					<label class="image-replace password"></label>
+					<input id="pswd" asp-for="Password" class="full-width has-padding has-border" type="password" id="signin-password" placeholder="Mot de passe">
+					<a id="hide-pswd" onclick="HideShowPwd()" class="hide-password">Voir</a>
+					<br />
+				</p>
+				<span asp-validation-for="Password" class="text-danger"></span>
+
+
+				<p id="remember-me" class="fieldset LogIn" style="display:block;">
+					<label for="remember-me">
+						<input class="form-check-input PointerCursor" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+					</label>
+				</p>
+				<p id="btn-login" class="fieldset LogIn" style="display:block;">
+					<btn>
+						<input class="full-width btn btn-primary btnEnable" style="height: 40px;" value="Se connecter" type="submit">
+					</btn>
+				</p>
+
+
+			</form>
+			<p id="reset-password-btn" class="fieldset paswd" style="display:none;">
+				<a asp-action="ChangeMDP" asp-route-email="tribou02@hotmail.com" style="text-align:center; padding-left: 20px;" class="full-width has-padding btn btnEnable btnChangePassword">Modifier le mot de passe</a>
+			</p>
+
+			<p id="forgot-password" class="form-bottom-message">
+				<a class="PointerCursor" onclick="ForgotPassword()">Mot de passe oublier?</a>
+			</p>
+			<div id="rePa" style="display:block;"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function HideShowPwd() {
+		var pwd = document.getElementById("pswd");
+		var btn = document.getElementById("hide-pswd");
+
+		if (pwd.type === "password") {
+			pwd.type = "text";
+			btn.textContent = "Cacher";
+		} else {
+			pwd.type = "password";
+			btn.textContent = "Voir";
+		}
+		console.log(btn.textContent);
+	}
+
+	function ForgotPassword() {
+		var login = document.getElementById("LogIn");
+		var paswd = document.getElementById("paswd");
+
+		var passwd = document.getElementById("password");
+		var forgotPswd = document.getElementById("forgot-password");
+		var rememberMe = document.getElementById("remember-me");
+		var btnLogin = document.getElementById("btn-login");
+		var rePa = document.getElementById("rePa");
+		var rePaBtn = document.getElementById("reset-password-btn");
+
+
+		if (window.getComputedStyle(rePa).display === "none") {
+			login.style.display = "block";
+			paswd.style.display = "none";
+
+			passwd.style.display = "block";
+			forgotPswd.style.display = "block";
+			rememberMe.style.display = "block";
+			btnLogin.style.display = "block";
+			rePaBtn.style.display = "none";
+		}
+		if (window.getComputedStyle(rePa).display === "block") {
+			login.style.display = "none";
+			paswd.style.display = "block";
+
+			passwd.style.display = "none";
+			forgotPswd.style.display = "none";
+			rememberMe.style.display = "none";
+			btnLogin.style.display = "none";
+			rePaBtn.style.display = "block";
+		}
+	}
+</script>

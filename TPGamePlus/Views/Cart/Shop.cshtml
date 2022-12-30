@@ -1,0 +1,342 @@
+﻿@using TPGamePlus.Domain.Entities
+@using Microsoft.Extensions.Options
+@model TPGamePlus.Models.Account.ShopViewModel
+@inject IOptions<StripeOptions> StripeOptions
+@{
+	ViewData["Title"] = "Panier";
+}
+
+<section class="h-100 h-custom rounded p-2">
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col">
+				<div class="card">
+					<div class="card-body p-4">
+
+						<div class="row">
+
+							<div class="col-lg-7">
+								<h5 class="mb-3">
+									<a asp-controller="Home" asp-action="Store" asp-route-orderSort="Aucun" asp-route-page="1">
+										<i class="fas fa-long-arrow-alt-left me-2" style="color: var(--txt-color) !important;"></i>Retourner au magasin
+									</a>
+								</h5>
+								<hr>
+
+								<div class="d-flex justify-content-between align-items-center mb-4">
+									<div>
+										<p class="mb-1">Panier d'achat</p>
+										@if (@ViewBag.nb > 1)
+										{
+											<p class="mb-0">Vous avez @ViewBag.nb produits dans votre panier</p>
+										}
+										else if (@ViewBag.nb == 1)
+										{
+											<p class="mb-0">Vous avez un produit dans votre panier</p>
+										}
+										else
+										{
+											<p class="mb-0">Vous n'avez aucun produit dans votre panier</p>
+										}
+									</div>
+								</div>
+								<vc:product-shop></vc:product-shop>
+							</div>
+
+							<div class="col-lg-5">
+								<div class="card navbar-color text-white rounded-3">
+									<div class="card-body" style="background-color: var(--shop-background-color); color: var(--txt-color);">
+										<form asp-controller="Cart" asp-action="Shop" class="mt-4">
+											<div asp-validation-summary="All" class="text-danger"></div>
+											<div class="col-12" style="margin-bottom:15px;">
+												<label>Nouvelle adresse</label>
+												<input id="addressN" class="PointerCursor" type="radio" checked="checked" onclick="ChooseAddress('newAddressShop')" />
+												&emsp;
+												<label>Adresse existante</label>
+												@if (ViewBag.addressNb > 0)
+												{
+													<input id="addressO" class="PointerCursor" type="radio" onclick="ChooseAddress('oldAddressShop')" />
+												}
+												else
+												{
+													<input disabled type="radio" />
+												}
+											</div>
+
+											<div id="oldAddressShop" class="hideElement">
+												<div class="d-flex justify-content-between align-items-center mb-4">
+													<h5 class="mb-0">Adresses pré-enregistrées</h5>
+												</div>
+												<div id="oldAddress">
+													<select asp-for="Address" asp-items="@ViewBag.addresses" class="form-control">
+														<option value="">Choisir une adresse</option>
+													</select>
+													<span asp-validation-for="Address" class="text-danger"></span>
+												</div>
+												<br />
+											</div>
+
+											<div id="newAddressShop" class="hideElement showElement">
+												<div class="d-flex justify-content-between align-items-center mb-4">
+													<h5 class="mb-0">Nouvelle adresse</h5>
+												</div>
+												<div class="row mb-4">
+													<div class="col-md-9">
+														<div class="form-outline form-white">
+															<label asp-for="StreetAddress" class="form-label"></label>
+															<input asp-for="StreetAddress" min="1" class="form-control form-control-lg" placeholder="Adresse" siez="17" />
+															<span asp-validation-for="StreetAddress" class="text-danger"></span>
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="form-outline form-white">
+															<label asp-for="PostalCode" class="form-label"></label>
+															<input asp-for="PostalCode" min="1" class="form-control form-control-lg" placeholder="A1B 2C3" siez="17" />
+															<span asp-validation-for="PostalCode" class="text-danger"></span>
+														</div>
+													</div>
+												</div>
+												<div class="row mb-4">
+													<div class="col-md-6">
+														<div class="form-outline form-white">
+															<label asp-for="City" class="form-label"></label>
+															<input asp-for="City" min="1" class="form-control form-control-lg" placeholder="Ville" siez="17" />
+															<span asp-validation-for="City" class="text-danger"></span>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-outline form-white">
+															<label asp-for="Country" class="form-label"></label>
+															<input asp-for="Country" class="form-control form-control-lg" placeholder="Pays" siez="17" />
+															<span asp-validation-for="Country" class="text-danger"></span>
+														</div>
+													</div>
+												</div>
+												<div class="row mb-4">
+													<div class="col-md-12">
+														<div class="form-outline form-white">
+															<label asp-for="State" class="form-label"></label>
+															<input asp-for="State" class="form-control form-control-lg" placeholder="Province ou État" siez="17" />
+															<span asp-validation-for="State" class="text-danger"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="d-flex justify-content-between">
+												<p class="mb-2">Sous-total</p>
+												<p class="mb-2">@ViewBag.subTotal.ToString("0.00")</p>
+											</div>
+
+											<div class="d-flex justify-content-between">
+												<p class="mb-2">Transport</p>
+												<p class="mb-2">$@ViewBag.shipping.ToString("0.00")</p>
+											</div>
+
+											<div class="d-flex justify-content-between mb-4">
+												<p class="mb-2">Total(Taxes incl.)</p>
+												<p class="mb-2">$@ViewBag.total.ToString("0.00")</p>
+											</div>
+
+											@if (@ViewBag.nb > 0)
+											{
+												<button id="payment-request-button" type="submit" class="btn btn-info btn-block btn-lg btnEnable">
+													<span>Passer la commande <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+												</button>
+											}
+											else
+											{
+												<button disabled type="submit" class="btn btn-info btn-block btn-lg">
+													<span>Passer la commande <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+												</button>
+											}
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<dialog id="payment-section" class="rounded">
+	<form id="payment-form" class="modal-dialog modal-content bg-light" method="post" accept-charset="UTF-8" style="background-color: var(--background-main-color) !important; color: var(--txt-color);">
+		<div class="modal-header" style="justify-content: center;">
+			<h4 class="modal-title">Informations de paiement</h4>
+		</div>
+
+		<div class="modal-body">
+			<div class="form-row mb-2">
+				<div class="col">
+					<label for="name" class="control-label">Nom</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-white"><i class="fas fa-user"></i></span>
+						</div>
+						<input id="name" name="name" class="form-control border-left-0" type="text" placeholder="Nom" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row mb-2">
+				<div class="col">
+					<label for="phone" class="control-label">Téléphone</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-white"><i class="fas fa-phone"></i></span>
+						</div>
+						<input id="phone" name="phone" class="form-control border-left-0" type="text" placeholder="Numéro de téléphone" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row mb-2">
+				<div class="col">
+					<label for="email" class="control-label">Email</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-white"><i class="fas fa-at"></i></span>
+						</div>
+						<input id="email" class="form-control border-left-0" type="email" placeholder="Address email" required>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-row mb-2">
+				<div class="col">
+					<label for="card" class="control-label">Carte</label>
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text bg-white"><i class="fas fa-credit-card"></i></span>
+						</div>
+						<div id="card" class="form-control border-left-0"></div>
+					</div>
+					<div id="card-errors" role="alert"></div>
+				</div>
+			</div>
+
+
+			<div class="modal-footer row">
+				<div class="float-right">
+					<button id="cancel-btn" type="button" class="btn btnEnable">Annuler</button>
+					<button id="reset-btn" type="reset" class="btn btnEnable">Réinitialiser</button>
+					<button id="submit-btn" type="submit" class="btn btnEnable">Confirmer</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</dialog>
+
+<div class="row">
+	<div class="col-12">
+		<div id="incompatible-message" class="alert alert-warning my-2 d-none" role="alert">
+			Your browser does not support the payment request API. To view this demo, you'll need to try it in a browser that does.
+			See <a class="alert-link" href="https://caniuse.com/#feat=payment-request">https://caniuse.com/#feat=payment-request</a> for more information.
+		</div>
+	</div>
+</div>
+
+@section scripts {
+	<script type="text/javascript">
+		@Model.JavascriptToRun
+
+			function ShowPayment() {
+				document.getElementById("payment-section").showModal();
+				document.getElementById("body").classList.toggle("modal-open");
+			};
+	</script>
+
+	<script>
+		(function () {
+			"use strict";
+
+			$(document).ready(function () {
+
+				let stripe = Stripe("@StripeOptions.Value.PublicKey");
+				let elements = stripe.elements();
+
+				let card = elements.create("card", {
+					style: {
+						base: {
+							fontSize: "16px",
+							fontWeight: "400",
+							color: "#495057",
+						}
+					},
+					hideIcon: true,
+					hidePostalCode: true
+				});
+
+				card.mount("#card");
+
+				card.addEventListener('change', function (event) {
+					var displayError = document.getElementById('card-errors');
+					if (event.error) {
+						displayError.textContent = event.error.message;
+					} else {
+						displayError.textContent = '';
+					}
+				});
+
+				var form = $("#payment-form");
+				form.on('submit', function (e) {
+					e.preventDefault();
+					stripe.createToken(card).then(function (result) {
+						if (result.error) {
+							$("#card-errors").textContent = result.error.message;
+						} else {
+							@ViewBag.phone = document.getElementById('phone').value;
+							@ViewBag.fullname = document.getElementById('name').value;
+							@ViewBag.email = document.getElementById('email').value;
+							stripeTokenHandler(result.token);
+						}
+					});
+				});
+
+				function stripeTokenHandler(token) {
+					fetch('/cart/charges', {
+						method: 'post',
+						headers: { 'content-type': 'application/json' },
+						body: JSON.stringify({
+							token: token.id,
+							description: "@ViewBag.productName",
+							amountInCents: parseFloat(@ViewBag.total).toFixed(2) * 100, // Price in cents
+							currencyCode: "cad"
+						})
+					}).then(function (response) {
+						if (response.ok) {
+							window.location.replace("@Url.Action("Confirmation")")
+						} else {
+							//Liste d'erreur possible + message
+							switch (response.text) {
+								case "card_declined":
+									$("#card-errors").textContent = "Refus de paiement";
+									break;
+								case "expired_card":
+									$("#card-errors").textContent = "Carte expirée";
+									break;
+								case "incorrect_cvc":
+									$("#card-errors").textContent = "Cvc incorrecte";
+									break;
+								case "processing_error":
+									$("#card-errors").textContent = "Erreur de traitement";
+									break;
+								case "incorrect_number":
+									$("#card-errors").textContent = "Numéro incorrect";
+									break;
+								default:
+									$("#card-errors").textContent = "Erreur";
+									break;
+							}
+							e.complete('fail');
+						}
+					});
+				}
+			});
+		})();
+	</script>
+}

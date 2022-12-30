@@ -1,0 +1,90 @@
+﻿@using TPGamePlus.Domain.Entities
+@model TPGamePlus.Domain.ApplicationUser
+@{
+	ViewData["Title"] = "Mon Profile";
+	List<Order> orders = ViewBag.UserOrder;
+}
+
+<div class="container" style="margin-bottom:80px;">
+	<h4 style="margin-top:50px;">@ViewData["Title"]</h4>
+
+	<ul id="tabnavAccount">
+		<li id="choiceAccount1" onclick="menuAccountProfil('informationAccount')" class="active"><a>Information</a></li>
+		<li id="choiceAccount2" onclick="menuAccountProfil('orderAccount')"><a>Commandes</a></li>
+		<li id="choiceAccount3" onclick="menuAccountProfil('otherAccount')"><a>Autres</a></li>
+	</ul>
+
+
+	<div id="informationAccount" class="hideElement showElement">
+		<div class="row">
+			<h4 style="margin-top:50px;">Mes Informations</h4>
+			<hr />
+			<p><strong>Nom d'utilisateur:</strong> @Model.UserName</p>
+			<p><strong>Rôle:</strong> @Model.Role</p>
+			<br /><br />
+			<p><strong>Prénom:</strong> @Model.FirstName</p>
+			<p><strong>Nom:</strong> @Model.LastName</p>
+			<br /><br />
+			<p><strong>Numéro de téléphone:</strong> @Model.PhoneNumber</p>
+			<p><strong>Email:</strong> @Model.Email</p>
+		</div>
+	</div>
+
+	<div id="orderAccount" class="hideElement">
+		<h4 style="margin-top:50px;">Mes Commandes</h4>
+		<hr />
+		@foreach (var order in orders)
+		{
+			<div class="OrderUserElement">
+
+				<p style="width:15%; margin:0;"><strong>UID:</strong> @order.OrderID.ToString("000") &emsp;</p>
+
+				@switch (order.Status)
+				{
+					case 0:
+						<p style="width:30%; margin:0;"><strong>Status:</strong> En attente &emsp;</p>
+						break;
+					case 1:
+						<p style="width:30%; margin:0;"><strong>Status:</strong> Accepté &emsp;</p>
+						break;
+					case 2:
+						<p style="width:30%; margin:0;"><strong>Status:</strong> Refusé &emsp;</p>
+						break;
+					case 3:
+						<p style="width:30%; margin:0;"><strong>Status:</strong> En livraison &emsp;</p>
+						break;
+					case 4:
+						<p style="width:30%; margin:0;"><strong>Status:</strong> Arrivé &emsp;</p>
+						break;
+					default:
+						<p style="width:30%; margin:0;"><strong>Status:</strong> INVALIDE VALUE &emsp;</p>
+						break;
+				}
+
+				<div style="display:block!important; width: 65%; margin:0;">
+					<vc:order-item-list s-name="@order.UserName" id="@order.OrderID"></vc:order-item-list>
+				</div>
+
+				<div>
+					@if (order.Status == (int)OrderStatus.Refuser - 1 || order.Status == (int)OrderStatus.Arriver - 1)
+					{
+						<a class="PointerCursor actionLink" onclick="ComfirmeDelete('/Admin/DeleteOrder/@order.OrderID')">Supprimer</a>
+					}
+					else
+					{
+						<a class="PointerCursor actionLink" onclick="ComfirmeDelete('/Admin/DeleteOrder/@order.OrderID')">Annuler</a>
+					}
+				</div>
+			</div>
+		}
+	</div>
+
+
+	<div id="otherAccount" class="hideElement">
+		<h4 style="margin-top:50px;">Adresse</h4>
+		<hr />
+		<a class="btn btnEnable" asp-action="AddAddress" asp-controller="account">Ajouter une adresse</a>
+
+		<vc:address-list></vc:address-list>
+	</div>
+</div>

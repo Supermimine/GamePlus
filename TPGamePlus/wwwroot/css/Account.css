@@ -1,0 +1,57 @@
+﻿/*---------- Account ----------*/
+@import url("layout.css");
+
+tr {
+    color: var(--txt-color) !important;
+}
+
+.table {
+    color: var(--txt-color) !important;
+}
+
+.OrderUserElement {
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px;
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+ul#tabnavAccount {
+    font: bold 13px verdana, arial, sans-serif;
+    list-style-type: none;
+    padding-bottom: 22px;
+    border-bottom: 1px solid darkgrey;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+    ul#tabnavAccount li {
+        float: left;
+        height: 21px;
+        background-color: #808080;
+        margin: 2px 2px 0 2px;
+        border: 1px solid darkgrey;
+        border-start-start-radius: 6px;
+        border-start-end-radius: 6px;
+    }
+
+        ul#tabnavAccount li.active {
+            border-bottom: 1px solid var(--background-main-color);
+            background-color: var(--background-main-color);
+        }
+
+#tabnavAccount a {
+    float: left;
+    display: block;
+    text-decoration: none;
+    padding: 4px;
+}
+
+    #tabnavAccount a:hover {
+        background: var(--background-main-color);
+        border-start-start-radius: 6px;
+        border-start-end-radius: 6px;
+        cursor: pointer;
+    }

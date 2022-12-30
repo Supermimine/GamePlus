@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TPGamePlus.Domain.Entities.Product>
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css">
+</head>
+
+
+
+<btn class="btn">
+    <a asp-controller="Admin" asp-action="ManageProduct">Ajouter un nouveau produit</a>
+</btn>
+<btn class="btn">
+    <a asp-controller="Admin" asp-action="IndexAdmin">Page admin</a>
+</btn>
+<table id="tblData" class="table table-bordered table-striped" style="width:100%"> 
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status.StatusName)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActualPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.StatusName)
+                </td>
+                <td>
+                    <a class="PointerCursor" onclick="ComfirmeDelete('/Admin/DeleteProduct/@item.ProductID')">Supprimer</a> |
+                    <a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@item.ProductID">Modifier</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}

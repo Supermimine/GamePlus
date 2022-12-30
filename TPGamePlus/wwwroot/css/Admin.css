@@ -1,0 +1,36 @@
+﻿/*---------- Admin ----------*/
+@import url("layout.css");
+
+.btn-admin {
+    min-width: 280px;
+    margin:5px;
+    color: var(--txt-color) !important;
+}
+
+.textCenterAdmin {
+    text-align: center;
+    margin: 20px 0 50px 0;
+}
+
+.SpaceTop {
+    margin-top: 55px;
+}
+
+.nav-link {
+    color: var(--txt-color) !important;
+}
+
+tr {
+    color: var(--txt-color) !important;
+}
+.table {
+    color: var(--txt-color) !important;
+}
+
+a {
+    color: var(--btn-background-color) !important;
+}
+
+footer a {
+    color: var(--txt-color) !important;
+}

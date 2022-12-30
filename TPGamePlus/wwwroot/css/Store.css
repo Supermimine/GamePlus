@@ -1,0 +1,127 @@
+﻿/*---------- Store ----------*/
+@import url("layout.css");
+
+#storePage {
+    float: right;
+    width: 75%;
+}
+
+#sideBarDiv {
+    width: 15%;
+}
+
+#sortStore {
+    width: 100%;
+    text-align: right;
+    margin-right: 5%;
+}
+
+#SectionRightNavBar {
+    flex-direction: row;
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    min-width: 146px;
+    max-width: 345px;
+    top: 0;
+    left: 0;
+    background-color: var(--background-third-color);
+    color: var(--txt-color) !important;
+    border-right: 1px solid darkgrey;
+    overflow-x: hidden;
+}
+
+    .sidenav .itemSideBar {
+        padding: 0 0 0 24px;
+        text-decoration: none;
+        font-size: 16px;
+        display: block;
+    }
+
+    .sidenav .subtitleSideBar {
+        padding: 0 0 0 12px;
+        font-size: 20px;
+        display: block;
+        margin: 20px 0 0 0;
+    }
+
+    .sidenav a:hover {
+        color: black;
+    }
+
+.PaginationCenter {
+    place-content: center;
+    text-align: center;
+    cursor: default;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    border-radius: 0.25rem;
+    place-content: center;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+.active {
+    color: var(--txt-hover-color) !important;
+}
+
+
+
+@media screen and (min-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+
+    #storePage {
+        width: 45%;
+        margin: 0;
+    }
+
+    #sideBarDiv {
+        width: 55%;
+    }
+}
+
+@media screen and (max-height: 992px) {
+    #storePage {
+        width: 55%;
+        margin: 0;
+    }
+
+    #sideBarDiv {
+        width: 45%;
+    }
+}
+
+@media screen and (max-height: 1126px) {
+    #storePage {
+        width: 75%;
+        margin: 0;
+    }
+
+    #sideBarDiv {
+        width: 35%;
+    }
+}
+
+@media screen and (max-height: 1126px) {
+    #storePage {
+        width: 75%;
+        margin: 0;
+    }
+
+    #sideBarDiv {
+        width: 35%;
+    }
+}

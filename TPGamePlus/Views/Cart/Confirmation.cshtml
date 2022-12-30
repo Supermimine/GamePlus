@@ -1,0 +1,122 @@
+﻿@using TPGamePlus.Domain.Entities
+@model TPGamePlus.Models.Account.ConfirmationViewModel
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<section class="h-100 h-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-4">
+
+                        <h3>VEUILLEZ CONFIRMER VOS INFORMATIONS !</h3>
+
+                        <div class="row">
+
+                            <div class="col-lg-5">
+
+                                <div class="card navbar-color text-white rounded-3">
+                                    <div class="card-body">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <h5 class="mb-0">Adresse de livraison</h5>
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Adresse</p>
+                                                <p class="mb-2">@Model.StreetAddress</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Code postal</p>
+                                                <p class="mb-2">@Model.PostalCode</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Pays</p>
+                                                <p class="mb-2">@Model.Country</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Province ou État</p>
+                                                <p class="mb-2">@Model.State</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Ville</p>
+                                                <p class="mb-2">@Model.City</p>
+                                            </div>
+
+                                            <hr class="my-4">
+
+                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                <h5 class="mb-0">Facturation</h5>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Adresse courriel</p>
+                                                <p class="mb-2">@Model.EmailAddress</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Nom du titulaire de la carte</p>
+                                                <p class="mb-2">@Model.FullName</p>
+                                            </div>
+
+                                            <hr class="my-4">
+
+                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                <h5 class="mb-0">Prix</h5>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Sous-total</p>
+                                                <p class="mb-2">@ViewBag.subTotal.ToString("0.00")</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Transport</p>
+                                                <p class="mb-2">$@ViewBag.shipping.ToString("0.00")</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <p class="mb-2">Total(Taxes incl.)</p>
+                                                <p class="mb-2">$@ViewBag.total.ToString("0.00")</p>
+                                            </div>
+
+                                            <a asp-controller="Cart" asp-action="ConfirmCart" class="btn btn-info btn-block btn-lg">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>$@ViewBag.total.ToString("0.00")</span>
+                                                    <span>Confirmer <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                </div>
+                                            </a>
+
+                                            <a asp-controller="Cart" asp-action="Shop" style="background-color : #d33" class="btn btn-info btn-block btn-lg">
+                                                <div class="d-flex justify-content-between">
+                                                    <span></span>
+                                                    <span>Annuler <i class="fas fa-long-arrow-alt-left ms-2"></i></span>
+                                                </div>
+                                            </a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-7">
+
+                                <vc:product-confirmation></vc:product-confirmation>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

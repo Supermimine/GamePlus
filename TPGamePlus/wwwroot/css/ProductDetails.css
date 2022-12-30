@@ -1,0 +1,134 @@
+﻿/*---------- ProductDetails ----------*/
+@import url("layout.css");
+
+#imagePopup {
+    border: 1px solid #333;
+    background: var(--background-main-color);
+    text-align: center;
+    border-radius: 2%;
+    box-sizing: border-box;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 60%;
+}
+
+    #imagePopup img {
+        width: 90%;
+    }
+
+#closeBtn {
+    cursor: pointer;
+    border: none;
+    background: #e5e5e5;
+    border: black 2px solid;
+    border-radius: 25%;
+    float: right;
+}
+
+.SectionLeftDetail {
+    width: 40% !important;
+}
+
+.ImageSectionLeftDetail {
+    min-height: 330px;
+    max-width: 330px;
+    cursor: zoom-in;
+    padding: 5px;
+}
+
+.StoreSectionDetail {
+    height: 38px !important;
+    width: 50px !important;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.SectionRightDetail {
+    width: 60% !important;
+}
+
+.SpaceBetweenElement {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.tableDetails .tdDetails {
+    border: 1px solid #b1b1b1;
+    padding: 2px;
+}
+
+.titleDetail {
+    background-color: var(--table-background-color);
+    padding-right: 15px;
+}
+
+.tdBox {
+    min-width:180px;
+}
+
+@media only screen and (min-width: 600px) {
+    .SectionRightDetail {
+        width: 70% !important;
+    }
+
+    .SectionLeftDetail {
+        width: 30% !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .SectionRightDetail {
+        width: 20% !important;
+    }
+
+    .SectionLeftDetail {
+        width: 80% !important;
+    }
+}
+
+@media only screen and (min-width: 765px) {
+    .SectionRightDetail {
+        width: 60% !important;
+    }
+
+    .SectionLeftDetail {
+        width: 40% !important;
+    }
+}
+
+@media only screen and (max-width: 765px) {
+    .SectionRightDetail {
+        width: 30% !important;
+    }
+
+    .SectionLeftDetail {
+        width: 70% !important;
+    }
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128,128,128,0.5);
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%);
+    height: auto;
+    width: 400px;
+    display: block;
+}

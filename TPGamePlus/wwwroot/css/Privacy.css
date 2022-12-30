@@ -1,0 +1,13 @@
+﻿/*---------- Privacy ----------*/
+@import url("layout.css");
+
+.MicroSpacePrivacy {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.BoxInfoPolitics {
+    padding: 15px;
+    margin: auto;
+    background-color: var(--background-third-color);
+}

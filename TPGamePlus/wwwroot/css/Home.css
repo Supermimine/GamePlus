@@ -1,0 +1,49 @@
+﻿/*---------- Home ----------*/
+@import url("layout.css");
+
+.textAlignLast {
+    text-align-last: center;
+}
+
+.presentation {
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.WelcomImgAbout {
+    height: 50%;
+    min-width: 80px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1) !important;
+    color: var(--txt-color) !important;
+}
+
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+        filter: invert(1) !important;
+    }
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5% !important;
+    color: var(--txt-color) !important;
+}
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background-color: #c4c4c4 !important;
+        opacity: 0.1 !important;
+    }
+
+
+
+@media only screen and (min-width: 768px) {
+    .WelcomImgAbout {
+        max-width: 80%;
+    }
+}

@@ -1,0 +1,47 @@
+﻿@using TPGamePlus.Domain.Entities
+@model Product
+
+<head>
+	<link rel="stylesheet" href="~/css/Carousel.css">
+</head>
+
+
+
+<div class="col-item">
+	<div class="ElementItem ElementItemCarousel">
+		<a asp-controller="Home" asp-action="ProductDetails" asp-route-id="@Model.ProductID">
+
+			<img class="d-block w-50 PointerCursor" src=@Model.PathImage alt="@Model.Name image" />
+
+			<p class="TitleItem">
+				<strong>@Model.Name</strong>
+			</p>
+
+			@if (Model.ActualPrice < Model.Price)
+			{
+				<p>Prix: @Model.ActualPrice$</p>
+				<p><del> @Model.Price$ </del></p>
+			}
+			else
+			{
+				<p>Prix: @Model.Price$</p>
+			}
+
+			@switch (@Model.StatusID)
+			{
+				case 1:
+					<p>En stock</p>
+					break;
+				case 2:
+					<p>Précommander</p>
+					break;
+				case 3:
+					<p>Indisponible</p>
+					break;
+				default:
+					<p>Indisponible</p>
+					break;
+			}
+		</a>
+	</div>
+</div>

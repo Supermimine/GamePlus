@@ -1,0 +1,67 @@
+﻿@using TPGamePlus.Domain.Entities
+@model IEnumerable<CartItem>
+
+@foreach (var item in Model)
+{
+    if (item.Product != null)
+    {
+        <div class="card mb-3 mb-lg-0">
+            <div class="card-body" style="background-color: var(--background-second-color);">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div>
+                            <img src="@item.Product.PathImage"
+                         class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                        </div>
+                        <div class="ms-3">
+                            <h5>@item.Product.Name</h5>
+                            <p class="small mb-0"><vc:category id="(int)@item.Product.CategoryID"></vc:category></p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+
+                        <div class="w-75 btn-group" role="group">
+                            @if(item.QuantityMax <= item.Quantity + 1)
+                            {
+                                <button disabled class="btn btn-info">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <a asp-action="plus" asp-controller="cart" asp-route-cartId="@item.CartId" class="btn btn-info btnEnable colorBorder">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            }
+
+                            &nbsp;
+
+                            @if (item.Quantity == 1)
+                            {
+                                <button disabled class="btn btn-info">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <a asp-controller="Cart" asp-action="Minus" asp-route-cartId="@item.CartId" class="btn btn-info btnEnable colorBorder">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                            }
+                        </div>
+
+                        <div style="width: 50px; margin-left: 10px;">
+                            <h5 class="fw-normal mb-0">@item.Quantity</h5>
+                        </div>
+                        <div style="width: 80px;">
+                            <h5 class="mb-0">$@item.Product.ActualPrice</h5>
+                        </div>
+                        <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.CartId" style="color: #cecece; margin-left: 10px;">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

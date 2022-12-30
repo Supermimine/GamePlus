@@ -1,0 +1,182 @@
+﻿@{
+	ViewData["Title"] = "Accueil";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/Home.css">
+</head>
+
+
+
+<div class="alignContentCenter">
+	<h1 class="NormalCursor subTitle">Bienvenue sur le site web de Game Plus</h1>
+</div>
+<div class="textAlignLast">
+	<img class="col-12 WelcomImgAbout alignContentCenter" style="width:40%" src="~/img/Logo/banner.png" />
+</div>
+
+<div class="presentation textCenter">
+	Nous sommes une compagnie qui vend <span class="text-presentation"></span>
+</div>
+
+<div class="container textCenter NormalCursor">
+	<h1 id="News">Nos produits vedettes</h1>
+	<div id="carouselProduit" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="row">
+					<div class="col-3">
+						<div>
+							<vc:product-carousel id="@ViewBag.ved[0].ProductID"></vc:product-carousel>
+						</div>
+					</div>
+					<div class="col-3">
+						<div>
+							<vc:product-carousel id="@ViewBag.ved[1].ProductID"></vc:product-carousel>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-3">
+						<vc:product-carousel id="@ViewBag.ved[2].ProductID"></vc:product-carousel>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-3">
+						<vc:product-carousel id="@ViewBag.ved[3].ProductID"></vc:product-carousel>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="row">
+					<div class="col-3">
+						<div>
+							<vc:product-carousel id="@ViewBag.ved[4].ProductID"></vc:product-carousel>
+						</div>
+					</div>
+					<div class="col-3">
+						<div>
+							<vc:product-carousel id="@ViewBag.ved[5].ProductID"></vc:product-carousel>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-3">
+						<vc:product-carousel id="@ViewBag.ved[6].ProductID"></vc:product-carousel>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-3">
+						<vc:product-carousel id="@ViewBag.ved[7].ProductID"></vc:product-carousel>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselProduit" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselProduit" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</div>
+
+	<hr />
+
+	<div id="Nintendo" class="col-12 MicroSpaceBottom">
+		<h3 id="Nintendo">Jeux Nintendo</h3>
+	</div>
+	<div class="row MicroSpaceBottom">
+		<div>
+			<div class="row d-flex">
+				<vc:product id="@ViewBag.nin[0].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.nin[1].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.nin[2].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.nin[3].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.nin[4].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.nin[5].ProductID" is-quick-buy="false"></vc:product>
+			</div>
+		</div>
+	</div>
+
+	<hr />
+
+	<div id="Xbox" class="col-12 MicroSpaceBottom">
+		<h3 id="Xbox">Jeux Xbox</h3>
+	</div>
+	<div class="row MicroSpaceBottom">
+		<div>
+			<div class="row d-flex">
+				<vc:product id="@ViewBag.mic[0].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.mic[1].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.mic[2].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.mic[3].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.mic[4].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.mic[5].ProductID" is-quick-buy="false"></vc:product>
+			</div>
+		</div>
+	</div>
+
+	<hr />
+
+	<div id="PlayStation" class="col-12 MicroSpaceBottom">
+		<h3>Jeux PS4 et PS5</h3>
+	</div>
+	<div class="row MicroSpaceBottom">
+		<div id="PS4" class="row d-flex">
+			<div id="PS5" class="row d-flex">
+				<vc:product id="@ViewBag.ps4[0].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.ps4[1].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.ps4[2].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.ps5[0].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.ps5[1].ProductID" is-quick-buy="false"></vc:product>
+				<vc:product id="@ViewBag.ps5[2].ProductID" is-quick-buy="false"></vc:product>
+			</div>
+		</div>
+	</div>
+
+	<hr />
+
+	<div id="Controller" class="col-12 MicroSpaceBottom">
+		<h3 id="Controlleur">Controlleurs</h3>
+	</div>
+	<div class="BottomSpace">
+		<div>
+			<div class="MicroSpaceBottom">
+				<div class="row d-flex">
+					<vc:product id="@ViewBag.acc[0].ProductID" is-quick-buy="false"></vc:product>
+					<vc:product id="@ViewBag.acc[1].ProductID" is-quick-buy="false"></vc:product>
+					<vc:product id="@ViewBag.acc[2].ProductID" is-quick-buy="false"></vc:product>
+					<vc:product id="@ViewBag.acc[3].ProductID" is-quick-buy="false"></vc:product>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr />
+
+	<div id="Console" class="col-12 MicroSpaceBottom">
+		<h3 id="Console">Consoles</h3>
+	</div>
+	<div class="BottomSpace">
+		<div>
+			<div class="MicroSpaceBottom">
+				<div class="row d-flex">
+					<vc:product id="@ViewBag.con[0].ProductID" is-quick-buy="false"></vc:product>
+					<vc:product id="@ViewBag.con[1].ProductID" is-quick-buy="false"></vc:product>
+					<vc:product id="@ViewBag.con[2].ProductID" is-quick-buy="false"></vc:product>
+					<vc:product id="@ViewBag.con[3].ProductID" is-quick-buy="false"></vc:product>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr />
+	<vc:carousel-client></vc:carousel-client>
+	<hr />
+	<vc:form-contact-us></vc:form-contact-us>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+<script src="~/js/Home.js" asp-append-version="true"></script>

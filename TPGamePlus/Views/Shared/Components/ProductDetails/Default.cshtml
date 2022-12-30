@@ -1,0 +1,129 @@
+﻿@using TPGamePlus.Domain
+@using TPGamePlus.Domain.Entities
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model Product
+@{
+	int nbCart = @ViewBag.QteCart;
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/ProductDetails.css">
+</head>
+
+
+<body>
+
+	<div class="col-12">
+		<div>
+			<div class="paddingItem d-flex" style="width:100% !important">
+				<div class="SectionLeftDetail alignContentCenter">
+					<img class="smallImageDetail ImageSectionLeftDetail" src="@Model.PathImage" alt="@Model.Name image" />
+				</div>
+				<div class="SpaceBetweenElement SectionRightDetail">
+					<h1><strong>@Model.Name</strong></h1>
+
+					<div style="display:flex; align-items: center;">
+						@if (Model.ActualPrice < Model.Price)
+						{
+							<h4>@Model.ActualPrice$</h4>
+							<h6 style="padding-left: 8px;"><del> @Model.Price $ </del></h6>
+						}
+						else
+						{
+							<h4>@Model.Price$</h4>
+						}
+					</div>
+
+					<hr />
+
+					<div>
+						<div style="display:flex;">
+							<form onsubmit="showPopup()">
+
+								<input id="nbItemCart" name="nbItemCart" class="StoreSectionDetail" type="number" value="1" min="1" max="@Model.Quantity" />
+								@if ((SignInManager.IsSignedIn(User)) && (Model.StatusID != 3) && (Model.Quantity > 0 && nbCart == 0))
+								{
+									<div class="popup">
+										<button asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.ProductID" type="submit" class="btn btn-primary btnEnable">Ajouter au panier</button>
+										<span class="popuptext" id="popupAddCart">Ajouté au panier!</span>
+									</div>
+								}
+								else
+								{
+									<button disabled class="btn btn-primary">Indisponible</button>
+								}
+							</form>
+						</div>
+						@switch (@Model.StatusID)
+						{
+							case 1:
+								<p>En stock</p>
+								break;
+							case 2:
+								<p>Pré-commander</p>
+								break;
+							case 3:
+								<p>Indisponible</p>
+								break;
+							default:
+								<p>Indisponible</p>
+								break;
+						}
+						@if (Model.Quantity <= 0)
+						{
+							Model.Quantity = 0;
+						}
+						<div>Quantité: @Model.Quantity</div>
+					</div>
+
+					<hr />
+
+					<vc:product-info id="(int)@Model.ProductInfoID"></vc:product-info>
+
+					<hr />
+
+					<h6>Specification</h6>
+
+					<table class="tableDetails">
+						<tr>
+							<td class="titleDetail tdDetails">Code du produit</td>
+							<td class="tdDetails tdBox">@Model.ProductID.ToString("00000000")</td>
+						</tr>
+
+						<tr>
+							<td class="titleDetail tdDetails">Nom de la marque</td>
+							<td class="tdDetails tdBox">
+								<vc:compagny id="(int)@Model.CompagnyID"></vc:compagny>
+							</td>
+						</tr>
+
+
+						<tr>
+							<td class="titleDetail tdDetails">Catégorie</td>
+							<td class="tdDetails tdBox">
+								<vc:category id="(int)@Model.CategoryID"></vc:category>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="titleDetail tdDetails">Plateforme</td>
+							<td class="tdDetails tdBox">
+								<vc:plateforme id="(int)@Model.PlateformeID"></vc:plateforme>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<div class="overlay">
+	<div id="imagePopup" class="modal">
+		<button id="closeBtn" aria-label="close" class="btnEnable">X</button><br /><br />
+		<img id="largeImageDetail" src="" alt="" />
+	</div>
+</div>

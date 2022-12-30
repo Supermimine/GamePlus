@@ -1,0 +1,111 @@
+﻿/*---------- AboutUs ----------*/
+@import url("layout.css");
+
+.MicroSpace {
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.ImgInfoAbout {
+    height: 375px;
+}
+
+.ImgInfoLeftAbout {
+    text-align: left;
+}
+
+.PartnershipImg {
+    height: 10%;
+    width: 10%;
+    padding: 0;
+}
+
+.cardTop {
+    background-color: var(--background-second-color);
+}
+
+    .cardTop img {
+        max-width: 20%;
+        max-height: 20%;
+        transition: all .3s;
+        border-radius: 2%;
+    }
+
+.iconCard {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+    .iconCard a i {
+        margin: 10px;
+        color: var(--banner-background-color);
+        transition: all .6s;
+        transform: translateY(100px);
+    }
+
+.memberCard {
+    background: white;
+    position: relative;
+    overflow: hidden;
+    max-width: 75%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.paddingCard {
+    padding-bottom: 0px;
+    background-color: var(--background-main-color);
+}
+
+    .memberCard:hover .paddingCard {
+        padding-bottom: 30px;
+    }
+
+    .memberCard:hover .iconCard a i {
+        transform: translateY(15px);
+    }
+
+.BoxInfoAbout {
+    height: 200px;
+    background-color: var(--background-third-color);
+    border-radius: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .ImgInfoRighttAbout {
+        text-align: left;
+        transform: translate(+50%, 0);
+        margin-left: 100px;
+    }
+
+    .BoxInfoLeftAbout {
+        text-align: left;
+        transform: translate(0, -60%);
+        margin-left: 100px;
+        padding: 15px;
+    }
+
+    .BoxInfoRightAbout {
+        text-align: left;
+        transform: translate(+50%, -60%);
+        padding: 15px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .ImgInfoRighttAbout {
+        text-align: left;
+    }
+
+    .BoxInfoLeftAbout {
+        text-align: left;
+        padding: 15px;
+    }
+
+    .BoxInfoRightAbout {
+        text-align: right;
+        padding: 15px;
+    }
+}

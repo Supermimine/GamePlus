@@ -1,0 +1,6 @@
+﻿@{
+	int id = int.Parse(Url.ActionContext.RouteData.Values["id"].ToString());
+	ViewData["Title"] = "Détails";
+}
+
+<vc:product-details id="@id"></vc:product-details>

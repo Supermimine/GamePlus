@@ -1,0 +1,82 @@
+﻿@using TPGamePlus.Domain.Entities
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Product>
+@{
+	ViewData["Title"] = "Magasiner";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/Store.css">
+</head>
+
+
+
+<div class="d-flex">
+	<div id="sideBarDiv">
+		<div class="sidenav">
+			<div id="sidenavDiv">
+				<p class="subtitleSideBar">Compagnie</p>
+				<vc:publisher-list></vc:publisher-list>
+
+				<p class="subtitleSideBar">Prix</p>
+				<a id="ALLPRICE" class="itemSideBar PointerCursor" onclick="sortSelect('AllPrice',@Model.PageNumber)">Tout les prix</a>
+				<a id="SECTIONONEPRICE" class="itemSideBar PointerCursor" onclick="sortSelect('SectionOnePrice',@Model.PageNumber)">Moins de 10$</a>
+				<a id="SECTIONTWOPRICE" class="itemSideBar PointerCursor" onclick="sortSelect('SectionTwoPrice',@Model.PageNumber)">10$ à 25$</a>
+				<a id="SECTIONTHREEPRICE" class="itemSideBar PointerCursor" onclick="sortSelect('SectionThreePrice',@Model.PageNumber)">25$ à 50$</a>
+				<a id="SECTIONFOURPRICE" class="itemSideBar PointerCursor" onclick="sortSelect('SectionFourPrice',@Model.PageNumber)">50$ et plus</a>
+
+				<p class="subtitleSideBar">En rabais</p>
+				<div class="itemSideBar">
+					<input type="radio" class="PointerCursor" onclick="sortSelect('sale',@Model.PageNumber)" value="Produits en rabais" />
+					<label>Produits en rabais</label>
+				</div>
+
+				<p class="subtitleSideBar">Produit</p>
+				<vc:category-list></vc:category-list>
+
+				<p class="subtitleSideBar">Disponibilité</p>
+				<vc:status-list></vc:status-list>
+			</div>
+		</div>
+	</div>
+	<div id="storePage">
+		<div class="col-12 d-flex" style="margin-top:5px;">
+			<div id="sortStore">
+				<form>
+					<label for="sort">Trier par: </label>
+					<select id="SortSlect" onchange="sortSelect(this.value,@Model.PageNumber)">
+						<option value="Aucun">Aucun</option>
+						<option value="NameA">Nom A-Z</option>
+						<option value="NameB">Nom Z-A</option>
+						<option value="PriceA">Prix croissant</option>
+						<option value="PriceB">Prix décroissant</option>
+					</select>
+				</form>
+			</div>
+		</div>
+
+		<div class="container textCenter NormalCursor">
+			<div class="row MicroSpaceBottom">
+				@foreach (var product in Model)
+				{
+					<vc:product id="@product.ProductID" is-quick-buy="true"></vc:product>
+				}
+			</div>
+		</div>
+
+		@if (Model.PageCount == 0)
+		{
+			<div class="col-12 PaginationCenter">
+				Aucun article ne correspond à votre recherche.
+			</div>
+		}
+		else
+		{
+			<div class="col-12 PaginationCenter">
+				@Html.PagedListPager(Model, page => Url.Action("Store",
+			new { sortOrder = ViewBag.sort ,page }))
+			</div>
+		}
+	</div>
+</div>

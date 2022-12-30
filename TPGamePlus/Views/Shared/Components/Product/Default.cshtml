@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using TPGamePlus.Data;
+@using TPGamePlus.Domain.Entities
+@using TPGamePlus.Domain;
+@inject SignInManager<ApplicationUser> signInManager
+@model Product
+
+<div class="col-lg-4 col-md-5 col-sm-6 paddingItem">
+	<a asp-controller="Home" asp-action="ProductDetails" asp-route-id="@Model.ProductID">
+		<div class="borderItem">
+			<div class="ElementItem">
+
+				@if (@Model.ProductID >= 1 && @Model.ProductID <= 6)
+				{
+					<img class="imgProduitMaxSize3" src=@Model.PathImage alt="@Model.Name image" />
+				}
+				else
+				{
+					<img class="imgProduitMaxSize" src=@Model.PathImage alt="@Model.Name image" />
+				}
+
+				<p class="TitleItem">
+					<strong>@Model.Name</strong>
+				</p>
+
+				@if (Model.ActualPrice < Model.Price)
+				{
+					<p>Prix: @Model.ActualPrice$</p>
+					<p><del> @Model.Price$ </del></p>
+				}
+				else
+				{
+					<p>Prix: @Model.Price$</p>
+				}
+
+				@if (Model.Quantity <= 0)
+				{
+					<p>Indisponible</p>
+				}
+				else
+				{
+					@switch (@Model.StatusID)
+					{
+						case 1:
+							<p>En stock</p>
+							break;
+						case 2:
+							<p>Pré-commander</p>
+							break;
+						case 3:
+							<p>Indisponible</p>
+							break;
+						default:
+							<p>Indisponible</p>
+							break;
+					}
+				}
+			</div>
+		</div>
+	</a>
+	@if (@ViewBag.quickBuy && signInManager.IsSignedIn(User))
+	{
+		@if (@Model.StatusID != 3 && @Model.Quantity > 0)
+		{
+			<a class="quickBuy PointerCursor" onclick="AnimationCheck(@Model.ProductID)" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.ProductID">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16" style="transform: translate(0px, 5px);">
+					<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+				</svg>
+
+				<div id="wrapper @Model.ProductID" style="display: none;">
+					<svg id="checkmark @Model.ProductID" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+						<circle id="checkmark__circle @Model.ProductID" cx="26" cy="26" r="25" fill="none" />
+						<path id="checkmark__check @Model.ProductID" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+					</svg>
+				</div>
+			</a>
+		}
+		else
+		{
+			<button disabled class="quickBuy">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+					<path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+				</svg>
+			</button>
+		}
+	}
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TPGamePlus.Domain.Entities.Status>
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css">
+</head>
+
+
+
+<btn class="btn">
+    <a asp-controller="Admin" asp-action="ManageStatus">Ajouter un nouveau status</a>
+</btn>
+<btn class="btn">
+    <a asp-controller="Admin" asp-action="IndexAdmin">Page admin</a>
+</btn>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusName)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.isMainShopFilter)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.isMainShopFilter)
+                </td>
+                <td>
+                    <a class="PointerCursor" onclick="ComfirmeDelete('/Admin/DeleteStatus/@item.StatusID')">Supprimer</a> |
+                    <a asp-controller="Admin" asp-action="EditStatus" asp-route-id="@item.StatusID">Modifier</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

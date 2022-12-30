@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Erreur Compte";
+    Layout = "_Layout";
+}
+
+
+<header>
+    <h1 class="text-danger" style="margin-top: 50px;">@ViewData["Title"]</h1>
+</header>
+<div class="p-2" style="text-align: center; margin-top: 35px; margin-bottom: 50px;">
+    <h4>Accès refusé</h4>
+    <a asp-action="Index" asp-controller="Home" class="btn btn-primary btnEnable">OK</a>
+</div>
